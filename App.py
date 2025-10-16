@@ -6,6 +6,7 @@ from utils.transcribe_module import transcribe_audio
 from utils.segment_to_subtitles import write_srt
 
 
+
 def main():
     st.set_page_config(
         page_title="Transliator",
