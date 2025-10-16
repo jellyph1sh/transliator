@@ -8,7 +8,7 @@ def convert_video_to_mp3(video_bytes):
     
     try:
         # Créer un fichier vidéo temporaire
-        print(f"Création du fichier vidéo temporaire...")
+        print("Création du fichier vidéo temporaire...")
         with tempfile.NamedTemporaryFile(delete=False, suffix=".mp4") as temp_video:
             temp_video.write(video_bytes)
             temp_video_path = temp_video.name

@@ -21,6 +21,7 @@ def transcribe_audio(file_path: str, model: whisper.Whisper) -> dict:
         
         print(f"Detected language: {language}")
         print(f"Number of segments: {len(text)}")
+        print(f"First segment: {text[0] if text else 'No segments'}")
         
         return {"lang": language, "text": text}
         
