@@ -1,5 +1,6 @@
 import streamlit as st
 import tempfile
+
 from components.download_video import download_video
 from utils.converter_audio import convert_video_to_mp3
 from utils.transcribe_module import transcribe_audio
@@ -23,7 +24,10 @@ def main():
     if uploaded_file is not None:
         with st.spinner("We prepare the video...", show_time=True):
             temp_audio_path = convert_video_to_mp3(uploaded_file.getvalue())
+            print("temp_audio_path:", temp_audio_path)
             result = transcribe_audio(temp_audio_path)
+            print("result:")
+            print(result)
             with tempfile.NamedTemporaryFile(delete=False, suffix=".mp4") as srt_file:
                 srt_file_path = srt_file.name
                 write_srt(result["text"], srt_file_path)

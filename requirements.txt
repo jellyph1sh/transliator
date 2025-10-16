@@ -4,3 +4,4 @@ transformers
 sentencepiece
 torch
 sacremoses
+ffmpeg-python

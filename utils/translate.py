@@ -1,10 +1,5 @@
-from transformers import MarianMTModel, MarianTokenizer
 
-def translate_text(text, src_lang="en", tgt_lang="fr"):
-    model_name = f"Helsinki-NLP/opus-mt-{src_lang}-{tgt_lang}"
-    # On récupère le tokenizer et le modèle
-    tokenizer = MarianTokenizer.from_pretrained(model_name)
-    model = MarianMTModel.from_pretrained(model_name)
+def translate_text(text, tokenizer, model):
     # On génère le nom du modèle en fonction des langues source et cible
     # On traduit le texte
     inputs = tokenizer(text, return_tensors="pt", truncation=True)
