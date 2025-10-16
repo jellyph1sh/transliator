@@ -1,8 +1,12 @@
 import streamlit as st
 from components.download_video import download_video
 
+
 def main():
-    st.title('TranslIAtor')
+    st.header('Welcome to Transliator !')
+
+    st.sidebar.image('ressources\logo.png')
+
     uploaded_file = st.file_uploader(label="Choose your video", type="mp4", accept_multiple_files=False, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, label_visibility="visible", width="stretch")
 
     if uploaded_file is not None:
