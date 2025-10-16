@@ -3,7 +3,7 @@ import tempfile
 import whisper
 from transformers import MarianMTModel, MarianTokenizer
 
-from components.download_video import download_video
+from utils.download_video import download_video
 from utils.converter_audio import convert_video_to_mp3
 from utils.transcribe_module import transcribe_audio
 from utils.segment_to_subtitles import write_srt
