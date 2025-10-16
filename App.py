@@ -5,8 +5,19 @@ from utils.converter_audio import convert_video_to_mp3
 from utils.transcribe_module import transcribe_audio
 from utils.segment_to_subtitles import write_srt
 
+
+
 def main():
-    st.title('TranslIAtor')
+    st.set_page_config(
+        page_title="Transliator",
+        page_icon="ressources/logo_round.png",
+        layout="centered"
+    )
+    
+    st.header('Welcome to Transliator !')
+
+    st.sidebar.image('ressources\logo.png')
+
     uploaded_file = st.file_uploader(label="Choose your video", type="mp4", accept_multiple_files=False, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, label_visibility="visible", width="stretch")
 
     if uploaded_file is not None:

@@ -1,0 +1,12 @@
+[client]
+showErrorDetails = "none"
+
+[theme]
+# Couleurs principales inspirées du logo
+primaryColor = "#FF7A33"
+backgroundColor = "#F9FAFB"
+# secondaryBackgroundColor = "#E6F4EA"
+textColor = "#0D0D0D"
+font = "sans serif"
+
+[theme.sidebar]
