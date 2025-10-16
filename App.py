@@ -7,6 +7,12 @@ from utils.segment_to_subtitles import write_srt
 
 
 def main():
+    st.set_page_config(
+        page_title="Transliator",
+        page_icon="ressources/logo_round.png",
+        layout="centered"
+    )
+    
     st.header('Welcome to Transliator !')
 
     st.sidebar.image('ressources\logo.png')
