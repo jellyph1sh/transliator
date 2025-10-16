@@ -20,6 +20,8 @@ pip show torch >nul 2>&1 || pip install torch
 
 pip show sacremoses >nul 2>&1 || pip install sacremoses
 
+pip show ffmpeg-python >nul 2>&1 || pip install ffmpeg-python
+
 echo Toutes les dependances sont installees!
 
 python -m streamlit run App.py
