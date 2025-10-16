@@ -1,9 +1,6 @@
 import streamlit as st
 import segment_to_subtitles as sts
-import video as vp
-import translate as tr
+from components.video_uploader import video_uploader
 
-st.write("Hello world")
-
-# vp.video_player("ressources\Lartiste_-_Chocolat_feat._Awa_Imani_Clip_Officiel.mp4")
-print(tr.translate_file("ressources\subtiltles.srt"))
+st.title('TranslIAtor')
+video_uploader(st)
