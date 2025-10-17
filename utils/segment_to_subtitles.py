@@ -11,29 +11,26 @@ def format_timestamp(seconds):
     
     return f"{hours:02d}:{minutes:02d}:{secs:02d},{milliseconds:03d}"
 
-def write_srt(segments, output_path, tokenizer=None, model=None):
-    if tokenizer is None or model is None:
-        model_name = "Helsinki-NLP/opus-mt-en-fr"
-        tokenizer = MarianTokenizer.from_pretrained(model_name)
-        model = MarianMTModel.from_pretrained(model_name)
-
-    print(f"Écriture de {len(segments)} segments dans: {output_path}")
+def write_srt(segments, src_language, output_path, target_language="fr"):
 
     texts_to_translate = [seg['text'].strip() for seg in segments]
     
-    print("Traduction des segments en batch...")
     batch_size = 32
     translated_texts = []
-    
-    for i in range(0, len(texts_to_translate), batch_size):
-        batch = texts_to_translate[i:i+batch_size]
-        inputs = tokenizer(batch, return_tensors="pt", padding=True, truncation=True, max_length=512)
-        translated = model.generate(**inputs)
-        batch_translations = [tokenizer.decode(t, skip_special_tokens=True) for t in translated]
-        translated_texts.extend(batch_translations)
-        
-        if i % 100 == 0:
-            print(f"Traduit {i}/{len(texts_to_translate)} segments...")
+
+    if src_language == target_language:
+        translated_texts = texts_to_translate
+    else:
+        print("Traduction des segments en batch...")
+        model_name = f"Helsinki-NLP/opus-mt-{src_language}-{target_language}"
+        tokenizer = MarianTokenizer.from_pretrained(model_name)
+        model = MarianMTModel.from_pretrained(model_name)
+        for i in range(0, len(texts_to_translate), batch_size):
+            batch = texts_to_translate[i:i+batch_size]
+            inputs = tokenizer(batch, return_tensors="pt", padding=True, truncation=True, max_length=512)
+            translated = model.generate(**inputs)
+            batch_translations = [tokenizer.decode(t, skip_special_tokens=True) for t in translated]
+            translated_texts.extend(batch_translations)
     
     print(f"Traduction terminée: {len(translated_texts)} segments")
 
