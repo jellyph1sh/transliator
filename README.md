@@ -57,11 +57,12 @@ L’utilisateur peut :
 
 ## 🏗️ Structure du projet
 
-rejouter utils
 transliator/  
 ├── App.py # Fichier principal  
 ├── requirements.txt # Dépendances Python  
 ├── DOCKERFILE # Déploiement Docker  
+├── utils # Utilitaires
+├── ressources # images, etc
 ├── dockerise.bat # Script Windows pour build Docker  
 ├── setup.bash / setup.bat # Scripts d’installation  
 ├── .devcontainer/ # Configuration VS Code  
@@ -71,6 +72,8 @@ transliator/
 ---
 
 ## 🛠️SETUP ##
+
+Exécuter un des script setup.
 
 Dans les script "Setup" on peut y retrouver les commandes suivantes: 
 
@@ -110,6 +113,9 @@ Dans les script "Setup" on peut y retrouver les commandes suivantes:
 2. Executer dans le terminal ".venv/Scripts/activate.bat" puis "python -m streamlit run App.py"
 
 
+# Docker 
+
+L'image du projet peut être générée à l'aide du Dockerfile.
 
 
 
