@@ -39,7 +39,7 @@ def convert_video_to_mp3(video_bytes):
         if not os.path.exists(temp_audio_path):
             raise Exception("Le fichier audio n'a pas été créé")
             
-        return temp_audio_path
+        return [temp_audio_path, temp_video_path]
 
     except ffmpeg.Error as e:
         print("Erreur FFmpeg :")
@@ -54,6 +54,6 @@ def convert_video_to_mp3(video_bytes):
             os.remove(temp_audio_path)
         raise
         
-    finally:
-        if temp_video_path and os.path.exists(temp_video_path):
-            os.remove(temp_video_path)
+    # finally:
+    #     if temp_video_path and os.path.exists(temp_video_path):
+    #         os.remove(temp_video_path)

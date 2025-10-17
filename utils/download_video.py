@@ -3,7 +3,7 @@ import ffmpeg
 import tempfile
 import os
 
-def download_video(st, data, srt_file_path):    
+def download_video(st, data, srt_file_path, video_path):    
     col1, col2 = st.columns(2)
     
     with col1:
@@ -29,49 +29,40 @@ def download_video(st, data, srt_file_path):
     
     st.markdown("---")
     
-    if st.button("Generate Video with Burned Subtitles", help="This will embed subtitles permanently into the video"):
-        with st.spinner("Burning subtitles into video... This may take a moment."):
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".mp4") as temp_input:
-                temp_input.write(data.read() if hasattr(data, 'read') else data)
-                temp_input_path = temp_input.name
+    if st.button("Générer la vidéo avec sous-titres intégrés", help="Incruste définitivement les sous-titres dans la vidéo"):
+        with st.spinner("Incrustation des sous-titres... cela peut prendre un moment"):
+            temp_output_path = video_path.replace(".mp4", "_subtitled.mp4")
             
-            temp_output_path = temp_input_path.replace(".mp4", "_subtitled.mp4")
-            
-            srt_path_escaped = srt_file_path.replace('\\', '/').replace(':', '\\:')
-            
-            print(f"Input video: {temp_input_path}")
+            print(f"Input video: {video_path}")
             print(f"SRT file: {srt_file_path}")
             print(f"Output video: {temp_output_path}")
             
-            (
-                ffmpeg
-                .input(temp_input_path)
-                .output(
-                    temp_output_path,
-                    vf=f"subtitles={srt_path_escaped}",
-                    vcodec='libx264',
-                    acodec='aac',
-                    strict='experimental'
+            try:
+                (
+                    ffmpeg
+                    .input(video_path)
+                    .filter("subtitles", srt_file_path)
+                    .output(temp_output_path)
+                    .run(overwrite_output=True, capture_stdout=True, capture_stderr=True)
                 )
-                .overwrite_output()
-                .run(capture_stdout=True, capture_stderr=True)
-            )
-            
-            print("Video with subtitles created successfully!")
+            except ffmpeg.Error as e:
+                st.error("Erreur lors de l'incrustation des sous-titres")
+                st.text(e.stderr.decode())
+                return
+
+            st.success("Vidéo avec sous-titres générée avec succès !")
             
             with open(temp_output_path, 'rb') as f:
                 video_with_subs = f.read()
             
-            st.success("Video with subtitles generated successfully!")
             st.download_button(
-                label="Download Video with Subtitles", 
+                label="Télécharger la vidéo avec sous-titres", 
                 data=video_with_subs, 
                 file_name="video_with_subtitles.mp4", 
                 mime="video/mp4",
-                help="Download the video with burned-in subtitles"
+                help="Télécharger la vidéo avec les sous-titres intégrés"
             )
             
-            if os.path.exists(temp_input_path):
-                os.remove(temp_input_path)
+            # Nettoyage des fichiers temporaires
             if os.path.exists(temp_output_path):
                 os.remove(temp_output_path)
