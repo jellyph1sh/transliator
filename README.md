@@ -157,7 +157,8 @@ L'image du projet peut être générée à l'aide du Dockerfile.
 | **Discord** | ~400 Mo | 40–60 % | 0,4–0,6 | 4–6 W | **0,00067–0,0010 kWh** | Faible | Appel audio/vidéo, charge modérée. |
 | **Microsoft Word** | ~200 Mo | 4–30 % | 0,04–0,3 | 0,4–3 W | **0,00007–0,0005 kWh** | Très faible | Activité bureautique simple. |
 
-
+compréhensions : 0.01 kWh = 1 charge (10W) d'un smartphone pendant 1 heure ou allumer 1 ampoule 100 W pendant 6 minutes
+                 
 > ⚠ Les calculs sont basés sur :  
 > - Puissance CPU estimée : 10 W par cœur en charge complète  
 > - Durée : 10 minutes = 0,1667 h  
