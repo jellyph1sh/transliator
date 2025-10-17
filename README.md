@@ -126,18 +126,22 @@ L'image du projet peut être générée à l'aide du Dockerfile.
 
 **Navigateur web (Chrome)**
 
-- **Page initiale :** mémoire ~180 Mo, CPU négligeable  
-- **Upload + traitement vidéo :** mémoire ~320 Mo, CPU ~4% sur 16 cœurs (soit 0,64 W par cœur estimé à 10 W)  
-- **Download vidéo traitée :** mémoire ~250 Mo, CPU ~3% sur 16 cœurs  
+- **Page initiale :** mémoire ~50 Mo, CPU négligeable  
+- **Upload + traitement vidéo :** mémoire ~160 Mo, CPU ~2% sur 16 cœurs 
+- **Download vidéo traitée :** mémoire ~160 Mo, CPU ~2% sur 16 cœurs  
+
+![avant](<Capture d’écran (8).png>) ![après](<Capture d’écran (9).png>)
 
 **Impact :** faible consommation énergétique. L’utilisation du navigateur est adaptée à des tâches légères et reste écologique pour des usages simples.  
 **Consommation estimée (10 min) :** ~0,0011 kWh  
 
 **Docker**
 
-- **Initialisation :** mémoire ~760 Mo, CPU ~0,1% sur 16 cœurs  
-- **Upload + traitement vidéo :** mémoire ~1,15 Go, CPU ~800% (soit 8 cœurs à 100% chacun, puissance ~10 W/cœur)  
-- **Download vidéo traitée :** mémoire ~1 Go, CPU ~150% (soit 1,5 cœurs à 100%)  
+- **Initialisation :** mémoire ~1Go, CPU ~1% sur 16 cœurs  
+- **Upload + traitement vidéo :** mémoire ~5Go Go, CPU ~800% (soit 8 cœurs à 100% chacun, puissance ~10 W/cœur)  
+- **Download vidéo traitée :** mémoire ~5 Go, CPU ~150% (soit 1,5 cœurs à 100%)  
+
+![alt text](<Capture d'écran 2025-10-17 144711.png>)
 
 **Impact :** traitement intensif très énergivore. L’utilisation de 8 cœurs simultanément entraîne une consommation électrique notable.  
 **Consommation estimée (10 min) :**  
