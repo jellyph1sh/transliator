@@ -23,7 +23,7 @@ def main():
     
     st.header('Welcome to Transliator !')
 
-    st.sidebar.image('ressources\logo.png')
+    st.sidebar.image('ressources/logo.png')
     
     # Sélecteur de qualité pour permettre à l'utilisateur de choisir
     st.sidebar.markdown("##Settings")
