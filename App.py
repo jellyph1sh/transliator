@@ -17,13 +17,13 @@ def load_whisper_model(model_size="base"):
 def main():
     st.set_page_config(
         page_title="Transliator",
-        page_icon="ressources/logo_round.png",
+        page_icon="resources/logo_round.png",
         layout="centered"
     )
     
     st.header('Welcome to Transliator !')
 
-    st.sidebar.image('ressources/logo.png')
+    st.sidebar.image('resources/logo.png')
     
     # Sélecteur de qualité pour permettre à l'utilisateur de choisir
     st.sidebar.markdown("##Settings")
