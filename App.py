@@ -48,8 +48,7 @@ def main():
 
     if uploaded_file is not None:
         with st.spinner("We prepare the video...", show_time=True):
-            temp_paths = temp_audio_path = convert_video_to_mp3(uploaded_file.getvalue())
-            print("temp_audio_path:", temp_paths[0])
+            temp_paths = convert_video_to_mp3(uploaded_file.getvalue())
             result = transcribe_audio(temp_paths[0], whisper_model)
             write_srt(result["text"],result["lang"], "subtitles.srt", target_language=language_option)
             st.video(uploaded_file, format="video/mp4", start_time=0, subtitles={"subtitles": "subtitles.srt"}, end_time=None, loop=False, autoplay=False, muted=False, width="stretch")

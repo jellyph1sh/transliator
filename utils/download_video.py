@@ -29,8 +29,8 @@ def download_video(st, data, srt_file_path, video_path):
     
     st.markdown("---")
     
-    if st.button("Générer la vidéo avec sous-titres intégrés", help="Incruste définitivement les sous-titres dans la vidéo"):
-        with st.spinner("Incrustation des sous-titres... cela peut prendre un moment"):
+    if st.button("Generate video with subtitles", help="Add subtitles to the video"):
+        with st.spinner("Adding subtitles to the video. Please wait ..."):
             temp_output_path = video_path.replace(".mp4", "_subtitled.mp4")
             
             print(f"Input video: {video_path}")
@@ -46,21 +46,21 @@ def download_video(st, data, srt_file_path, video_path):
                     .run(overwrite_output=True, capture_stdout=True, capture_stderr=True)
                 )
             except ffmpeg.Error as e:
-                st.error("Erreur lors de l'incrustation des sous-titres")
+                st.error("Error during the process")
                 st.text(e.stderr.decode())
                 return
 
-            st.success("Vidéo avec sous-titres générée avec succès !")
+            st.success("Video successfully generated")
             
             with open(temp_output_path, 'rb') as f:
                 video_with_subs = f.read()
             
             st.download_button(
-                label="Télécharger la vidéo avec sous-titres", 
+                label="Download video with subtitles", 
                 data=video_with_subs, 
                 file_name="video_with_subtitles.mp4", 
                 mime="video/mp4",
-                help="Télécharger la vidéo avec les sous-titres intégrés"
+                help=""
             )
             
             # Nettoyage des fichiers temporaires
