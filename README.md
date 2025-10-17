@@ -104,7 +104,7 @@ Dans les script "Setup" on peut y retrouver les commandes suivantes:
 - python -m streamlit run App.py
 
 
-# 🚀 Lancement
+## 🚀 Lancement
 
 
 1. Executer le script ".\setup.bash" ou .\setup.bat sur le terminal puis cLiquer sur l'adresse de l'URL network
@@ -113,7 +113,7 @@ Dans les script "Setup" on peut y retrouver les commandes suivantes:
 2. Executer dans le terminal ".venv/Scripts/activate.bat" puis "python -m streamlit run App.py"
 
 
-# Docker 
+## 🐳 Docker 
 
 L'image du projet peut être générée à l'aide du Dockerfile.
 
